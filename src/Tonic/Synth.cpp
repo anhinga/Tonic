@@ -59,12 +59,6 @@ namespace Tonic {
           break;
       }
       
-//MP -- this was giving me compiler errors, and I think it doesn't really need to be in here anyway. Delete?
-//      std::stringstream ss;
-//      ss << "message: " << name << " value: " << param.value.getValue();
-//      
-//      debug(ss.str());
-      
     }
     else{
       error("message: " + name + " was not registered. You can register a message using Synth::addParameter.");
@@ -80,6 +74,21 @@ namespace Tonic {
     return returnParams;
   }
   
+  void Synth::addControlChangeSubscriber(string name, ControlChangeSubscriber* resp){
+    if(uiMessengers.find(name) != uiMessengers.end()){
+      uiMessengers[name].setValueChangedCallback(resp);
+    }else{
+      error("No value called " + name + " was exposed to the UI.");
+    }
+  }
+  
+  void Synth::tickUI(){
+    std::map<string, ControlChangeNotifier>::iterator it = uiMessengers.begin();
+    for (; it != uiMessengers.end(); it++) {
+      it->second.tickUI();
+    }
+  }
+
   // Synth Factory
   SynthFactory::map_type * SynthFactory::map;
   

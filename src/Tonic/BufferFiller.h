@@ -30,6 +30,7 @@ namespace Tonic{
     int                         bufferReadPosition_;
     TonicFrames                 outputFrames_;
     Tonic_::SynthesisContext_   context_;
+    vector<ControlGenerator>    explicitTicGens;
     
   protected:
     
@@ -52,6 +53,11 @@ namespace Tonic{
     
     //! Returns a reference to outputGen
     const Generator & getOutputGenerator() { return outputGen; };
+    
+    /*! In cases where we want ControlGenerator to be ticked, but don't necessarily want to add it to the 
+      synthesis graph, we can add it here and it will be automatically ticked.
+    */
+    void addControlGenToTick(ControlGenerator);
   };
   
   inline void BufferFiller::tick( TonicFrames& frames ){
@@ -61,6 +67,9 @@ namespace Tonic{
   
   inline void BufferFiller::tick( TonicFrames& frames, const Tonic_::SynthesisContext_ & context ){
     outputGen.tick(frames, context);
+    for (vector<ControlGenerator>::iterator it = explicitTicGens.begin(); it != explicitTicGens.end(); it++) {
+      it->tick(context);
+    }
   }
   
   // fill a buffer of floats, assuming the buffer is expecting max/min of 1,-1

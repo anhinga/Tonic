@@ -15,6 +15,7 @@
 #include <map>
 #include <float.h>
 #include "Tonic.h"
+#include "ControlChangeNotifier.h"
 #include "BufferFiller.h"
 
 namespace Tonic{
@@ -36,11 +37,11 @@ namespace Tonic{
     
     
     struct SynthParameter{
-      string              name;
-      ControlValue        value;
-      SynthParameterType  type;
-      float               min;
-      float               max;
+      string                name;
+      ControlValue          value;
+      SynthParameterType    type;
+      float                 min;
+      float                 max;
       
       SynthParameter();
     };
@@ -48,18 +49,37 @@ namespace Tonic{
     Synth();
     
     // It's quite conceivable that we'll want to move the messaging stuff up into Source
-    ControlValue  & addParameter(string name, float value=0, float min=-FLT_MAX, float max=FLT_MAX);
-    ControlValue  & addParameter(string name, SynthParameterType type, float value=0, float min=-FLT_MAX, float max=FLT_MAX);
+    ControlValue  &         addParameter(string name, float value=0, float min=-FLT_MAX, float max=FLT_MAX);
+    ControlValue  &         addParameter(string name, SynthParameterType type, float value=0, float min=-FLT_MAX, float max=FLT_MAX);
     
-    void              setParameter(string name, float value=1);
+    //! Returns a ControlConditioner which accepts an input and a ControlChangeSubscriber (supplied by the UI).
+    //! When the input value changes, ControlChangeSubscriber::messageRecieved is called
+    template<class T>
+    T                       exposeToUI(T input, string name){
+                              ControlChangeNotifier messenger;
+                              messenger.setName(name);
+                              messenger.in(input);
+                              uiMessengers[name] = messenger;
+                              addControlGenToTick(messenger);
+                              return input;
+                            }
     
-    vector<SynthParameter> getParameters();
+    void                    addControlChangeSubscriber(string name, ControlChangeSubscriber* resp);
+    
+    void                    setParameter(string name, float value=1);
+    
+    vector<SynthParameter>  getParameters();
+    void                    tickUI();
     
   protected:
 
     std::map<string, SynthParameter> parameters;
+    std::map<string, ControlChangeNotifier> uiMessengers;
     
   };
+  
+  
+  
   
   // ------------------------------
   //

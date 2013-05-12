@@ -18,4 +18,9 @@ namespace Tonic {
     outputGen = PassThroughGenerator();
   }
   
+  //! TODO I think this should use a mutex
+  void BufferFiller::addControlGenToTick(ControlGenerator gen){
+    explicitTicGens.push_back(gen);
+  }
+  
 }

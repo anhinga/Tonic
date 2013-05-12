@@ -12,7 +12,6 @@
 
 #include <vector>
 #include "ControlGenerator.h"
-#include "ControlValue.h"
 
 using std::vector;
 

@@ -147,6 +147,9 @@
 		0183D0E71735D0E6004638EB /* TonicFrames.h in Headers */ = {isa = PBXBuildFile; fileRef = 0183D05C1735D0E6004638EB /* TonicFrames.h */; };
 		0183D1091735D1AD004638EB /* Tonic.h in Headers */ = {isa = PBXBuildFile; fileRef = 0183D1081735D1AD004638EB /* Tonic.h */; };
 		01F7273E1715225500EBB4BB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F7273D1715225500EBB4BB /* Accelerate.framework */; };
+		A80F6C20173E80CE0079FB52 /* ControlChangeNotifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A80F6C1E173E80CE0079FB52 /* ControlChangeNotifier.cpp */; };
+		A80F6C21173E80CE0079FB52 /* ControlChangeNotifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A80F6C1E173E80CE0079FB52 /* ControlChangeNotifier.cpp */; };
+		A80F6C22173E80CE0079FB52 /* ControlChangeNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = A80F6C1F173E80CE0079FB52 /* ControlChangeNotifier.h */; };
 		F23A7CF3171B3D2E00AE8353 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F23A7CF2171B3D2E00AE8353 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -259,6 +262,8 @@
 		0183D1081735D1AD004638EB /* Tonic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tonic.h; sourceTree = "<group>"; };
 		01F72690171520F900EBB4BB /* libTonic-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTonic-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01F7273D1715225500EBB4BB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		A80F6C1E173E80CE0079FB52 /* ControlChangeNotifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ControlChangeNotifier.cpp; sourceTree = "<group>"; };
+		A80F6C1F173E80CE0079FB52 /* ControlChangeNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlChangeNotifier.h; sourceTree = "<group>"; };
 		F23A7CF1171B3D2E00AE8353 /* libTonic-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTonic-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F23A7CF2171B3D2E00AE8353 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F23A7D01171B3D2E00AE8353 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -391,6 +396,8 @@
 				0183D05A1735D0E6004638EB /* TonicCore.h */,
 				0183D05B1735D0E6004638EB /* TonicFrames.cpp */,
 				0183D05C1735D0E6004638EB /* TonicFrames.h */,
+				A80F6C1E173E80CE0079FB52 /* ControlChangeNotifier.cpp */,
+				A80F6C1F173E80CE0079FB52 /* ControlChangeNotifier.h */,
 			);
 			path = Tonic;
 			sourceTree = "<group>";
@@ -480,6 +487,7 @@
 				0183D0E41735D0E6004638EB /* TonicCore.h in Headers */,
 				0183D0E71735D0E6004638EB /* TonicFrames.h in Headers */,
 				0183D1091735D1AD004638EB /* Tonic.h in Headers */,
+				A80F6C22173E80CE0079FB52 /* ControlChangeNotifier.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +605,7 @@
 				0183D0DE1735D0E6004638EB /* Synth.cpp in Sources */,
 				0183D0E11735D0E6004638EB /* TableLookupOsc.cpp in Sources */,
 				0183D0E51735D0E6004638EB /* TonicFrames.cpp in Sources */,
+				A80F6C20173E80CE0079FB52 /* ControlChangeNotifier.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +658,7 @@
 				0183D0DF1735D0E6004638EB /* Synth.cpp in Sources */,
 				0183D0E21735D0E6004638EB /* TableLookupOsc.cpp in Sources */,
 				0183D0E61735D0E6004638EB /* TonicFrames.cpp in Sources */,
+				A80F6C21173E80CE0079FB52 /* ControlChangeNotifier.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,7 +670,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -696,7 +706,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
