@@ -21,7 +21,7 @@ namespace Tonic {
     class ControlPrinter_ : public ControlConditioner_{
       
     protected:
-      void computeOutput(const SynthesisContext  context);
+      void computeOutput(const SynthesisContext &   context);
       string message;
       bool hasPrinted;
       

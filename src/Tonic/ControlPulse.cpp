@@ -13,7 +13,7 @@ namespace Tonic { namespace Tonic_{
   ControlPulse_::ControlPulse_() : lastOnTime_(0)
   {}
   
-  void ControlPulse_::computeOutput(const SynthesisContext  context){
+  void ControlPulse_::computeOutput(const SynthesisContext &   context){
     
     ControlGeneratorOutput tickIn = input_.tick(context);
     ControlGeneratorOutput lengthIn = pulseLengthGen_.tick(context);

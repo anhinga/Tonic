@@ -21,7 +21,7 @@ namespace Tonic {
     class ControlRecorder_ : public ControlConditioner_{
       
     protected:
-      void computeOutput(const SynthesisContext  context);
+      void computeOutput(const SynthesisContext &   context);
       vector<ControlGeneratorOutput> recording;
       vector<ControlGeneratorOutput>::iterator playbackHead;
       ControlGenerator mode;

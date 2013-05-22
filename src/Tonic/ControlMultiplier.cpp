@@ -14,7 +14,7 @@ namespace Tonic { namespace Tonic_{
     inputs.push_back(input);
   }
   
-  void ControlMultiplier_::computeOutput(const SynthesisContext context){
+  void ControlMultiplier_::computeOutput(const SynthesisContext &  context){
     
     lastOutput_.status = ControlGeneratorStatusHasNotChanged;
     

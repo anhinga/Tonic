@@ -116,9 +116,9 @@ namespace Tonic {
         ControlGenerator decayTimeCtrlGen_;
         ControlGenerator stereoWidthCtrlGen_;
       
-        void updateDelayTimes(const SynthesisContext  context);
+        void updateDelayTimes(const SynthesisContext &   context);
             
-        void computeSynthesisBlock( const SynthesisContext context );
+        void computeSynthesisBlock( const SynthesisContext &  context );
 
       public:
       
@@ -140,7 +140,7 @@ namespace Tonic {
       
     };
     
-    inline void Reverb_::computeSynthesisBlock(const SynthesisContext context){
+    inline void Reverb_::computeSynthesisBlock(const SynthesisContext &  context){
       
       updateDelayTimes(context);
       

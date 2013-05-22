@@ -11,7 +11,7 @@
 namespace Tonic{
 
   namespace Tonic_{
-    void ControlFloor_::computeOutput(const SynthesisContext  context){
+    void ControlFloor_::computeOutput(const SynthesisContext &   context){
       lastOutput_.value = (int)input_.tick(context).value;
       lastOutput_.status = input_.tick(context).status;
     }

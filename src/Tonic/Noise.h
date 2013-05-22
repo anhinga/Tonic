@@ -22,11 +22,11 @@ namespace Tonic {
       
     protected:
       
-      void computeSynthesisBlock( const SynthesisContext  context );
+      void computeSynthesisBlock( const SynthesisContext &   context );
       
     };
     
-    inline void Noise_::computeSynthesisBlock( const SynthesisContext  context ){
+    inline void Noise_::computeSynthesisBlock( const SynthesisContext &   context ){
       TonicFloat* fdata = &outputFrames_[0];
       for (unsigned int i=0; i<outputFrames_.size(); i++){
         *fdata++ = randomSample();
@@ -50,7 +50,7 @@ namespace Tonic {
       TonicFloat    pinkBins_[kNumPinkNoiseBins];
       unsigned long pinkCount_;
       
-      void computeSynthesisBlock( const SynthesisContext  context);
+      void computeSynthesisBlock( const SynthesisContext &   context);
       
     public:
       
@@ -58,7 +58,7 @@ namespace Tonic {
 
     };
     
-    inline void PinkNoise_::computeSynthesisBlock( const SynthesisContext  context)
+    inline void PinkNoise_::computeSynthesisBlock( const SynthesisContext &   context)
     {
       // TODO: stereo?
       TonicFloat binval, prevbinval;

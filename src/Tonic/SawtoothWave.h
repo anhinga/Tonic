@@ -34,7 +34,7 @@ namespace Tonic {
       
       double phaseAccum_;
       
-      void computeSynthesisBlock( const SynthesisContext context );
+      void computeSynthesisBlock( const SynthesisContext &  context );
       
     public:
       AngularWave_();
@@ -50,7 +50,7 @@ namespace Tonic {
       
     };
     
-    inline void AngularWave_::computeSynthesisBlock(const SynthesisContext context){
+    inline void AngularWave_::computeSynthesisBlock(const SynthesisContext &  context){
       
       // tick freq and slope inputs
       freqGen_.tick(freqFrames_, context);

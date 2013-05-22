@@ -29,7 +29,7 @@ namespace Tonic {
       TonicFrames workSpace_;
       vector<BufferFiller> inputs_;
       
-      void computeSynthesisBlock(const SynthesisContext context);
+      void computeSynthesisBlock(const SynthesisContext &  context);
       
     public:
       
@@ -40,7 +40,7 @@ namespace Tonic {
       
     };
     
-    inline void Mixer_::computeSynthesisBlock(const SynthesisContext context)
+    inline void Mixer_::computeSynthesisBlock(const SynthesisContext &  context)
     {
       // Clear buffer
       outputFrames_.clear();

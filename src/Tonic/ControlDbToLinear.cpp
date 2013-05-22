@@ -10,7 +10,7 @@
 
 namespace Tonic { namespace Tonic_{
 
-  void ControlDbToLinear_::computeOutput(const SynthesisContext  context){
+  void ControlDbToLinear_::computeOutput(const SynthesisContext &   context){
     
     ControlGeneratorOutput inputOutput = input_.tick(context);
     lastOutput_.status = inputOutput.status;

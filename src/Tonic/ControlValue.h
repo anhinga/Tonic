@@ -28,7 +28,7 @@ namespace Tonic {
       
       protected:
             
-        void computeOutput(const SynthesisContext  context);
+        void computeOutput(const SynthesisContext &   context);
       
         TonicFloat  value_;
         bool        hasChanged_;

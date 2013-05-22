@@ -21,7 +21,7 @@ namespace Tonic {
     class ControlSwitcher_ : public ControlGenerator_{
       
     protected:
-      void computeOutput(const SynthesisContext  context);
+      void computeOutput(const SynthesisContext &   context);
       vector<ControlGenerator>inputs;
       ControlGenerator inputIndex;
       

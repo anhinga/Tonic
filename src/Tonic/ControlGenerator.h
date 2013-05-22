@@ -43,7 +43,7 @@ namespace Tonic {
       
       // Only override tick if you need custom reuse behavior
       // Pass in a pointer to a TonicFloat to return a value. Some generators may not care about value.
-      virtual ControlGeneratorOutput tick( const SynthesisContext  context );
+      virtual ControlGeneratorOutput tick( const SynthesisContext &   context );
       
       // Used for initializing other generators (see smoothed() method for example)
       virtual ControlGeneratorOutput initialOutput();
@@ -54,7 +54,7 @@ namespace Tonic {
       /*!
           Subclasses should use this function to put new data into lastOutput_
       */
-      virtual void computeOutput(const SynthesisContext  context) = 0;
+      virtual void computeOutput(const SynthesisContext &   context) = 0;
       
       ControlGeneratorOutput  lastOutput_;
       unsigned long           lastFrameIndex_;
@@ -64,7 +64,7 @@ namespace Tonic {
       
     };
     
-    inline ControlGeneratorOutput ControlGenerator_::tick(const SynthesisContext  context){
+    inline ControlGeneratorOutput ControlGenerator_::tick(const SynthesisContext &   context){
       
       if (context->forceNewOutput || lastFrameIndex_ != context->elapsedFrames){
         context_ = context;
@@ -97,7 +97,7 @@ namespace Tonic {
   class ControlGenerator : public TonicSmartPointer<Tonic_::ControlGenerator_>{
 
   public:
-    inline ControlGeneratorOutput tick( const SynthesisContext  context ){
+    inline ControlGeneratorOutput tick( const SynthesisContext &   context ){
       return obj->tick(context);
     }
     

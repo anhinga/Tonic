@@ -22,7 +22,7 @@ namespace Tonic { namespace Tonic_{
     
   }
   
-  void ControlStepper_::computeOutput(const SynthesisContext  context){
+  void ControlStepper_::computeOutput(const SynthesisContext &   context){
     float startVal = start.tick(context).value;
     float endVal = end.tick(context).value;
     float stepVal = step.tick(context).value;

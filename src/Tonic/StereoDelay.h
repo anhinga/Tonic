@@ -31,7 +31,7 @@ namespace Tonic {
       
       DelayLine delayLine_[2];
       
-      void computeSynthesisBlock( const SynthesisContext context );
+      void computeSynthesisBlock( const SynthesisContext &  context );
       
     public:
       
@@ -54,7 +54,7 @@ namespace Tonic {
       
     };
     
-    inline void StereoDelay_::computeSynthesisBlock(const SynthesisContext context){
+    inline void StereoDelay_::computeSynthesisBlock(const SynthesisContext &  context){
       
       delayTimeGen_[0].tick(delayTimeFrames_[TONIC_LEFT], context);
       delayTimeGen_[1].tick(delayTimeFrames_[TONIC_RIGHT], context);

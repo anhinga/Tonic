@@ -113,7 +113,7 @@ namespace Tonic { namespace Tonic_{
     
   }
   
-  void Reverb_:: updateDelayTimes(const SynthesisContext  context)
+  void Reverb_:: updateDelayTimes(const SynthesisContext &   context)
   {
     ControlGeneratorOutput densityOutput = densityCtrlGen_.tick(context);
     ControlGeneratorOutput shapeOutput = roomShapeCtrlGen_.tick(context);

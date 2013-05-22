@@ -18,7 +18,7 @@ namespace Tonic { namespace Tonic_{
     
   }
   
-  void ControlXYSpeed_::computeOutput(const SynthesisContext  context){
+  void ControlXYSpeed_::computeOutput(const SynthesisContext &   context){
     const int numToAverage = 1;
     ControlGeneratorOutput xOut = x.tick(context);
     ControlGeneratorOutput yOut = y.tick(context);

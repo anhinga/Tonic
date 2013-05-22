@@ -14,7 +14,7 @@ namespace Tonic { namespace Tonic_{
 
   }
   
-  void ControlMetro_::computeOutput(const SynthesisContext  context){
+  void ControlMetro_::computeOutput(const SynthesisContext &   context){
     
     double sPerBeat = 60.0/max(0.001,bpm_.tick(context).value);
     double delta = context->elapsedTime - lastClickTime_;

@@ -27,7 +27,7 @@ namespace Tonic { namespace Tonic_{
   }
   
   
-  void ControlSwitcher_::computeOutput(const SynthesisContext  context){
+  void ControlSwitcher_::computeOutput(const SynthesisContext &   context){
     int index = inputIndex.tick(context).value;
     for(vector<ControlGenerator>::iterator it = inputs.begin(); it != inputs.end(); it++){
       it->tick(context);

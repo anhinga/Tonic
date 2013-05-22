@@ -21,7 +21,7 @@ namespace Tonic {
     class ControlCounter_ : public ControlGenerator_{
       
     protected:
-      void computeOutput(const SynthesisContext  context);
+      void computeOutput(const SynthesisContext &   context);
       ControlGenerator trigger;
       ControlGenerator end;
       

@@ -26,7 +26,7 @@ namespace Tonic {
       Generator_();
       virtual ~Generator_();
       
-      virtual void tick( TonicFrames& frames, const SynthesisContext context );
+      virtual void tick( TonicFrames& frames, const SynthesisContext &  context );
       
       bool isStereoOutput(){ return isStereoOutput_; };
       
@@ -41,7 +41,7 @@ namespace Tonic {
       
       // override point for defining generator behavior
       // subclasses should implment to fill frames with new data
-      virtual void computeSynthesisBlock( const SynthesisContext context ) = 0;
+      virtual void computeSynthesisBlock( const SynthesisContext &  context ) = 0;
       
       bool            isStereoOutput_;
       TonicFrames     outputFrames_;
@@ -52,7 +52,7 @@ namespace Tonic {
       
     };
     
-    inline void Generator_::tick(TonicFrames &frames, const SynthesisContext context ){
+    inline void Generator_::tick(TonicFrames &frames, const SynthesisContext &  context ){
       
       // check context to see if we need new frames
       if (context->forceNewOutput || lastFrameIndex_ != context->elapsedFrames){
@@ -78,7 +78,7 @@ namespace Tonic {
 
     class PassThroughGenerator_ : public Tonic_::Generator_{
     public:
-      void computeSynthesisBlock( const SynthesisContext context ) {};
+      void computeSynthesisBlock( const SynthesisContext &  context ) {};
     };
 
   }
@@ -92,7 +92,7 @@ namespace Tonic {
       return obj->isStereoOutput();
     }
     
-    virtual void tick(TonicFrames& frames, const SynthesisContext context){
+    virtual void tick(TonicFrames& frames, const SynthesisContext &  context){
       obj->tick(frames, context);
     }
 

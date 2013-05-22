@@ -200,11 +200,11 @@ namespace Tonic {
                   
       void setRingBuffer( RingBuffer buffer ) { ringBuffer_ = buffer; }
             
-      void computeSynthesisBlock( const SynthesisContext context );
+      void computeSynthesisBlock( const SynthesisContext &  context );
       
     };
     
-    inline void RingBufferReader_::computeSynthesisBlock(const SynthesisContext context){
+    inline void RingBufferReader_::computeSynthesisBlock(const SynthesisContext &  context){
       // get some output from the table
       ringBuffer_.read(outputFrames_);
     };

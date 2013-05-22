@@ -21,7 +21,7 @@ namespace Tonic { namespace Tonic_{
     delayLine_.resize(maxDelay_);
   }
   
-  void ControlDelay_::computeOutput(const SynthesisContext  context){
+  void ControlDelay_::computeOutput(const SynthesisContext &   context){
     
     delayLine_[writeHead_] = input_.tick(context);
     

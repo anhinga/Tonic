@@ -30,7 +30,7 @@ namespace Tonic {
       int direction;
       bool hasBeenTriggered;
       
-      void computeOutput(const SynthesisContext  context);
+      void computeOutput(const SynthesisContext &   context);
       
     public:
       ControlStepper_();

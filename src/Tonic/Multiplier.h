@@ -24,7 +24,7 @@ namespace Tonic{
       TonicFrames workSpace;
       vector<Generator> inputs;
       
-      void computeSynthesisBlock( const SynthesisContext  context );
+      void computeSynthesisBlock( const SynthesisContext &   context );
 
     public:
       Multiplier_();
@@ -37,7 +37,7 @@ namespace Tonic{
     };
     
     
-    inline void Multiplier_::computeSynthesisBlock( const SynthesisContext  context ){
+    inline void Multiplier_::computeSynthesisBlock( const SynthesisContext &   context ){
       
       memset(&outputFrames_[0], 0, sizeof(TonicFloat) * outputFrames_.size());
       

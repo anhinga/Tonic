@@ -19,7 +19,7 @@ namespace Tonic {
     class ControlTrigger_ : public ControlGenerator_{
       
     protected:
-      void computeOutput(const SynthesisContext  context);
+      void computeOutput(const SynthesisContext &   context);
       bool doTrigger;
       
     public:
