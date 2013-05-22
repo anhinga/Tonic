@@ -18,7 +18,7 @@ namespace Tonic { namespace Tonic_{
     
   }
   
-  void ControlSubtractor_::computeOutput(const SynthesisContext_ & context){
+  void ControlSubtractor_::computeOutput(const SynthesisContext  context){
     ControlGeneratorOutput leftOut = left.tick(context);
     ControlGeneratorOutput rightOut = right.tick(context);
     if(leftOut.status == ControlGeneratorStatusHasNotChanged && rightOut.status == ControlGeneratorStatusHasNotChanged){

@@ -13,7 +13,8 @@
 #define __Tonic__Generator__
 
 #include "TonicFrames.h"
-#include <cmath>
+#include "SynthesisContext.h"
+
 namespace Tonic {
 
   namespace Tonic_{
@@ -25,9 +26,12 @@ namespace Tonic {
       Generator_();
       virtual ~Generator_();
       
-      virtual void tick( TonicFrames& frames, const SynthesisContext_ &context );
+      virtual void tick( TonicFrames& frames, const SynthesisContext context );
       
       bool isStereoOutput(){ return isStereoOutput_; };
+      
+      void lockMutex();
+      void unlockMutex();
       
       // set stereo/mono - changes number of channels in outputFrames_
       // subclasses should call in constructor to determine channel output
@@ -37,21 +41,24 @@ namespace Tonic {
       
       // override point for defining generator behavior
       // subclasses should implment to fill frames with new data
-      virtual void computeSynthesisBlock( const SynthesisContext_ &context ) = 0;
-
+      virtual void computeSynthesisBlock( const SynthesisContext context ) = 0;
       
       bool            isStereoOutput_;
       TonicFrames     outputFrames_;
       unsigned long   lastFrameIndex_;
       
+      // Smart pointer to the last context that this generator has seen
+      SynthesisContext context_;
+      
     };
     
-    inline void Generator_::tick(TonicFrames &frames, const SynthesisContext_ &context ){
+    inline void Generator_::tick(TonicFrames &frames, const SynthesisContext context ){
       
       // check context to see if we need new frames
-      if (context.forceNewOutput || lastFrameIndex_ != context.elapsedFrames){
+      if (context->forceNewOutput || lastFrameIndex_ != context->elapsedFrames){
+        context_ = context;
         computeSynthesisBlock(context);
-        lastFrameIndex_ = context.elapsedFrames;
+        lastFrameIndex_ = context->elapsedFrames;
       }
     
       // copy synthesis block to frames passed in
@@ -59,11 +66,19 @@ namespace Tonic {
       
     }
     
+    inline void Generator_::lockMutex(){
+      context_->lockMutex();
+    }
+    
+    inline void Generator_::unlockMutex(){
+      context_->unlockMutex();
+    }
+    
     /////////////////////
 
     class PassThroughGenerator_ : public Tonic_::Generator_{
     public:
-      void computeSynthesisBlock( const SynthesisContext_ &context ) {};
+      void computeSynthesisBlock( const SynthesisContext context ) {};
     };
 
   }
@@ -77,7 +92,7 @@ namespace Tonic {
       return obj->isStereoOutput();
     }
     
-    virtual void tick(TonicFrames& frames, const Tonic_::SynthesisContext_ & context){
+    virtual void tick(TonicFrames& frames, const SynthesisContext context){
       obj->tick(frames, context);
     }
 
@@ -112,7 +127,9 @@ namespace Tonic {
                                                                                         \
                                                                                         \
   generatorClassName& methodNameInGenerator(Generator arg){                             \
+    this->gen()->lockMutex();                                                           \
     this->gen()->methodNameInGenerator_(arg);                                           \
+    this->gen()->unlockMutex();                                                         \
     return static_cast<generatorClassName&>(*this);                                     \
   }                                                                                     \
                                                                                         \

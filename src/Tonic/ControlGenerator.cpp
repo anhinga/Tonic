@@ -11,7 +11,6 @@
 
 #include "ControlGenerator.h"
 #include "RampedValue.h"
-#include <cmath>
 
 namespace Tonic{
   namespace Tonic_{

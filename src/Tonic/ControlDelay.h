@@ -42,7 +42,7 @@ namespace Tonic {
       
       ControlGenerator delayTimeCtrlGen_;
       
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const SynthesisContext  context);
       
     public:
       

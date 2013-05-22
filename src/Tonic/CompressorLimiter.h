@@ -43,7 +43,7 @@ namespace Tonic {
       
       bool isLimiter_;
       
-      void computeSynthesisBlock( const SynthesisContext_ &context );
+      void computeSynthesisBlock( const SynthesisContext context );
       
     public:
       
@@ -51,8 +51,8 @@ namespace Tonic {
 
       // Base class methods overridden here for specialized input behavior
       void setInput( Generator input );
-      void tick(TonicFrames &frames, const SynthesisContext_ & context );
-      void tickThrough(TonicFrames & inFrames, TonicFrames & outFrames, const SynthesisContext_ & context);
+      void tick(TonicFrames &frames, const SynthesisContext  context );
+      void tickThrough(TonicFrames & inFrames, TonicFrames & outFrames, const SynthesisContext  context);
       
       // setters
       void setAudioInput( Generator gen );
@@ -73,21 +73,21 @@ namespace Tonic {
       
     };
     
-    inline void Compressor_::tick(TonicFrames &frames, const SynthesisContext_ &context ){
+    inline void Compressor_::tick(TonicFrames &frames, const SynthesisContext context ){
       
-      if (context.forceNewOutput || lastFrameIndex_ != context.elapsedFrames){
+      if (context->forceNewOutput || lastFrameIndex_ != context->elapsedFrames){
         amplitudeInput_.tick(ampInputFrames_, context); // get amp input frames
       }
       Effect_::tick(frames, context);
       
     }
     
-    inline void Compressor_::tickThrough(TonicFrames & inFrames, TonicFrames & outFrames, const SynthesisContext_ & context){
+    inline void Compressor_::tickThrough(TonicFrames & inFrames, TonicFrames & outFrames, const SynthesisContext  context){
       ampInputFrames_.copy(inFrames);
       Effect_::tickThrough(inFrames, outFrames, context);
     }
     
-    inline void Compressor_::computeSynthesisBlock(const SynthesisContext_ &context){
+    inline void Compressor_::computeSynthesisBlock(const SynthesisContext context){
       
       // Tick all scalar parameters
       float attackCoef = t60ToOnePoleCoef(max(0,attackGen_.tick(context).value));
@@ -196,18 +196,24 @@ namespace Tonic {
 
     //! Input for audio to be compressed
     Compressor & audioInput( Generator input ){
+      this->gen()->lockMutex();
       this->gen()->setInput( input );
+      this->gen()->unlockMutex();
       return *this;
     }
     
     //! Input for audio for compression amplitude envelope
     Compressor & sidechainInput( Generator input ){
+      this->gen()->lockMutex();
       this->gen()->setAmplitudeInput(input);
+      this->gen()->unlockMutex();
       return *this;
     }
     
     void setIsStereo( bool isStereo ){
+      this->gen()->lockMutex();
       this->gen()->setIsStereo(isStereo);
+      this->gen()->unlockMutex();
     }
     
     createControlGeneratorSetters(Compressor, attack, setAttack);
@@ -231,7 +237,9 @@ namespace Tonic {
     Limiter();
     
     void setIsStereo( bool isStereo ){
+      this->gen()->lockMutex();
       this->gen()->setIsStereo(isStereo);
+      this->gen()->unlockMutex();
     }
     
     createControlGeneratorSetters(Limiter, release, setRelease);

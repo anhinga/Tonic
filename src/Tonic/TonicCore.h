@@ -17,8 +17,7 @@
 #include <map>
 #include <algorithm>
 #include <stdexcept>
-#include <stdio.h>
-#include <math.h>
+#include <cmath>
 
 // TODO: Including pthread globally for now, will need to put in conditional includes below when
 // win32 mutexes are implemented
@@ -106,41 +105,6 @@ namespace Tonic {
     TonicUInt32 i[2];
   };
   
-  
-  namespace Tonic_{
-    // -- Synthesis Context Struct --
-    
-    // Context passed down from root BufferFiller graph object to all sub-generators
-    // Synchronizes signal flow in cases when generator output is shared between multiple inputs
-    struct SynthesisContext_{
-      
-      // Number of frames elapsed since program start
-      // unsigned long will last 38+ days before overflow at 44.1 kHz
-      unsigned long elapsedFrames;
-      
-      // System time in seconds
-      double elapsedTime;
-      
-      // If true, generators will be forced to compute fresh output
-      // TODO: Not fully implmenented yet -- ND 2013/05/20
-      bool forceNewOutput;
-            
-      SynthesisContext_() : elapsedFrames(0), elapsedTime(0), forceNewOutput(true){}
-    
-      
-      void tick() {
-        elapsedFrames += kSynthesisBlockSize;
-        elapsedTime = (double)elapsedFrames/sampleRate();
-        forceNewOutput = false;
-      };
-    
-    };
-    
-  } // namespace Tonic_
-  
-  // Dummy context for ticking things in-place.
-  // Will always be at time 0, forceNewOutput == true
-  static const Tonic_::SynthesisContext_ DummyContext;
 
 #pragma mark - Utility Functions
   
@@ -312,7 +276,7 @@ namespace Tonic {
   };
   
   //! Reference counting smart pointer class template
-  template<class T>
+  template<typename T>
   class TonicSmartPointer {
   protected:
     T * obj;

@@ -59,7 +59,7 @@ namespace Tonic {
 
     protected:
       
-      inline void computeSynthesisBlock( const SynthesisContext_ &context ){
+      inline void computeSynthesisBlock( const SynthesisContext context ){
         
         // tick modulations
         delayTimeGen_.tick(delayTimeFrames_, context);
@@ -85,7 +85,7 @@ namespace Tonic {
       
     protected:
 
-      inline void computeSynthesisBlock( const SynthesisContext_ &context ){
+      inline void computeSynthesisBlock( const SynthesisContext context ){
         
         // tick modulations
         delayTimeGen_.tick(delayTimeFrames_, context);
@@ -124,7 +124,7 @@ namespace Tonic {
       
       ControlGenerator scaleFactorGen_;
       
-      void computeSynthesisBlock( const SynthesisContext_ &context );
+      void computeSynthesisBlock( const SynthesisContext context );
 
       
     public:
@@ -136,7 +136,7 @@ namespace Tonic {
       
     };
     
-    inline void FilteredFBCombFilter6_::computeSynthesisBlock( const SynthesisContext_ &context ){
+    inline void FilteredFBCombFilter6_::computeSynthesisBlock( const SynthesisContext context ){
       
       // tick modulations
       delayTimeGen_.tick(delayTimeFrames_, context);

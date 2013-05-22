@@ -28,7 +28,7 @@ namespace Tonic {
       
       ControlGenerator bpm_;
       
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const SynthesisContext  context);
           
     public:
 

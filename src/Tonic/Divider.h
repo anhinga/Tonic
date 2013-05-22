@@ -26,7 +26,7 @@ namespace Tonic {
       Generator right;
       TonicFrames workSpace;
       
-      void computeSynthesisBlock( const SynthesisContext_ &context );
+      void computeSynthesisBlock( const SynthesisContext context );
       
     public:
       Divider_();
@@ -42,7 +42,7 @@ namespace Tonic {
       
     };
     
-    inline void Divider_::computeSynthesisBlock(const SynthesisContext_ &context){
+    inline void Divider_::computeSynthesisBlock(const SynthesisContext context){
       left.tick(outputFrames_, context);
       right.tick(workSpace, context);
       outputFrames_ /= workSpace;

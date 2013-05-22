@@ -23,7 +23,7 @@ namespace Tonic {
     protected:
       ControlGenerator left;
       ControlGenerator right;
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const SynthesisContext  context);
       
     public:
       ControlSubtractor_();

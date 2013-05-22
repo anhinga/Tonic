@@ -10,7 +10,6 @@
 #define __Tonic_DelayUtils__
 
 #include "TonicFrames.h"
-#include <cmath>
 
 namespace Tonic {
   

@@ -16,7 +16,7 @@ namespace Tonic{
       trigger = ControlValue(0);
     }
   
-    void ControlRandom_::computeOutput(const SynthesisContext_ & context){
+    void ControlRandom_::computeOutput(const SynthesisContext  context){
       ControlGeneratorOutput minOut = min.tick(context);
       ControlGeneratorOutput maxOut = max.tick(context);
     

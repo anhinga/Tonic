@@ -41,7 +41,7 @@ namespace Tonic {
       float lastYVal;
       float lastXVal;
     
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const SynthesisContext  context);
       
     public:
       ControlXYSpeed_();

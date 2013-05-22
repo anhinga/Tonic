@@ -43,12 +43,5 @@ namespace Tonic {
     }
 
   } // Namespace Tonic_
-    
-  
-  TableLookupOsc & TableLookupOsc::setLookupTable(SampleTable lookupTable){
-    gen()->setLookupTable(lookupTable);
-    return *this;
-  }
-  
   
 } // Namespace Tonic

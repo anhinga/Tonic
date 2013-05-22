@@ -22,7 +22,7 @@ namespace Tonic {
       
       std::vector<Generator> inputs;
       TonicFrames workSpace;
-      void computeSynthesisBlock( const SynthesisContext_ &context );
+      void computeSynthesisBlock( const SynthesisContext context );
 
     public:
       
@@ -36,7 +36,7 @@ namespace Tonic {
             
     };
     
-    inline void Adder_::computeSynthesisBlock( const SynthesisContext_ &context ){
+    inline void Adder_::computeSynthesisBlock( const SynthesisContext context ){
       
       TonicFloat *framesData =  &outputFrames_[0];
       

@@ -18,7 +18,7 @@ namespace Tonic { namespace Tonic_{
     
   }
   
-  void ControlRecorder_::computeOutput(const SynthesisContext_ & context){
+  void ControlRecorder_::computeOutput(const SynthesisContext  context){
     ControlGeneratorOutput inputOut = input_.tick(context);
     ControlGeneratorOutput modeOut = mode.tick(context);
     

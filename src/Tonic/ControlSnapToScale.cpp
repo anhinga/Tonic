@@ -39,7 +39,7 @@ namespace Tonic { namespace Tonic_{
     return ret;
   }
   
-  void ControlSnapToScale_::computeOutput(const SynthesisContext_ & context){
+  void ControlSnapToScale_::computeOutput(const SynthesisContext  context){
     static const int NOTES_PER_OCTAVE = 12;
     
     if( input_.tick(context).status ==  ControlGeneratorStatusHasChanged){

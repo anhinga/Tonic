@@ -33,7 +33,7 @@ namespace Tonic{
       std::map<string, ControlParameter> parameters_;
       std::vector<string> orderedParameterNames_;
       
-      void computeSynthesisBlock(const Tonic::Tonic_::SynthesisContext_ &context);
+      void computeSynthesisBlock(const SynthesisContext context);
       
     public:
       
@@ -51,12 +51,12 @@ namespace Tonic{
       vector<ControlParameter>  getParameters();
       
       void forceNewOutput(){
-        synthContext_.forceNewOutput = true;
+        synthContext_->forceNewOutput = true;
       }
             
     };
     
-    inline void Synth_::computeSynthesisBlock(const SynthesisContext_ &context){
+    inline void Synth_::computeSynthesisBlock(const SynthesisContext context){
 
       outputGen_.tick(outputFrames_, context);
       

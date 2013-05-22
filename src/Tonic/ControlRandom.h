@@ -21,7 +21,7 @@ namespace Tonic_{
   class ControlRandom_ : public ControlGenerator_{
    
    
-    void computeOutput(const SynthesisContext_ & context);
+    void computeOutput(const SynthesisContext  context);
     public:
    
     ControlGenerator max;

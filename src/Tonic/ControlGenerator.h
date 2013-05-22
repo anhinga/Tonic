@@ -11,6 +11,7 @@
 #define __Tonic_ControlGenerator__
 
 #include "TonicCore.h"
+#include "SynthesisContext.h"
 
 namespace Tonic {
   
@@ -42,7 +43,7 @@ namespace Tonic {
       
       // Only override tick if you need custom reuse behavior
       // Pass in a pointer to a TonicFloat to return a value. Some generators may not care about value.
-      virtual ControlGeneratorOutput tick( const SynthesisContext_ & context );
+      virtual ControlGeneratorOutput tick( const SynthesisContext  context );
       
       // Used for initializing other generators (see smoothed() method for example)
       virtual ControlGeneratorOutput initialOutput();
@@ -53,17 +54,21 @@ namespace Tonic {
       /*!
           Subclasses should use this function to put new data into lastOutput_
       */
-      virtual void computeOutput(const SynthesisContext_ & context) = 0;
+      virtual void computeOutput(const SynthesisContext  context) = 0;
       
       ControlGeneratorOutput  lastOutput_;
       unsigned long           lastFrameIndex_;
       
+      // Smart pointer to the last context that this generator has seen
+      SynthesisContext context_;
+      
     };
     
-    inline ControlGeneratorOutput ControlGenerator_::tick(const SynthesisContext_ & context){
+    inline ControlGeneratorOutput ControlGenerator_::tick(const SynthesisContext  context){
       
-      if (context.forceNewOutput || lastFrameIndex_ != context.elapsedFrames){
-        lastFrameIndex_ = context.elapsedFrames;
+      if (context->forceNewOutput || lastFrameIndex_ != context->elapsedFrames){
+        context_ = context;
+        lastFrameIndex_ = context->elapsedFrames;
         computeOutput(context);
       }
       
@@ -75,6 +80,14 @@ namespace Tonic {
       
       return lastOutput_;
     }
+    
+    inline void ControlGenerator_::lockMutex(){
+      context_->lockMutex();
+    }
+    
+    inline void ControlGenerator_::unlockMutex(){
+      context_->unlockMutex();
+    }
 
   }
 
@@ -84,7 +97,7 @@ namespace Tonic {
   class ControlGenerator : public TonicSmartPointer<Tonic_::ControlGenerator_>{
 
   public:
-    inline ControlGeneratorOutput tick( const Tonic_::SynthesisContext_ & context ){
+    inline ControlGeneratorOutput tick( const SynthesisContext  context ){
       return obj->tick(context);
     }
     
@@ -115,13 +128,14 @@ namespace Tonic {
 #define createControlGeneratorSetters(generatorClassName, methodNameInGenerator, methodNameInGenerator_)\
 \
 generatorClassName& methodNameInGenerator(float arg){                              \
-return methodNameInGenerator( ControlValue(arg) );                                 \
+  return methodNameInGenerator( ControlValue(arg) );                                 \
 }                                                                                  \
 \
 generatorClassName& methodNameInGenerator(ControlGenerator arg){                   \
-this->gen()->methodNameInGenerator_(arg);                                          \
-return static_cast<generatorClassName&>(*this);                                    \
+  this->gen()->lockMutex();            \
+  this->gen()->methodNameInGenerator_(arg);                                          \
+  this->gen()->unlockMutex();            \
+  return static_cast<generatorClassName&>(*this);                                    \
 }
-
 
 #endif

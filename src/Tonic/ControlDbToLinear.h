@@ -22,7 +22,7 @@ namespace Tonic {
       
     protected:
       
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const SynthesisContext  context);
       
     };
     

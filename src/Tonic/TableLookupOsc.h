@@ -47,7 +47,7 @@ namespace Tonic {
       Generator frequencyGenerator_;
       TonicFrames modFrames_;
       
-      void computeSynthesisBlock( const SynthesisContext_ & context );
+      void computeSynthesisBlock( const SynthesisContext  context );
       
     public:
       
@@ -66,7 +66,7 @@ namespace Tonic {
 
     };
     
-    inline void TableLookupOsc_::computeSynthesisBlock( const SynthesisContext_ & context ){
+    inline void TableLookupOsc_::computeSynthesisBlock( const SynthesisContext  context ){
       
       // Update the frequency data
       frequencyGenerator_.tick(modFrames_, context);
@@ -125,7 +125,12 @@ namespace Tonic {
     
     public:
     
-      TableLookupOsc & setLookupTable( SampleTable lookupTable );
+      TableLookupOsc & setLookupTable( SampleTable lookupTable ){
+        gen()->lockMutex();
+        gen()->setLookupTable(lookupTable);
+        gen()->unlockMutex();
+        return *this;
+      }
     
       createGeneratorSetters(TableLookupOsc, freq, setFrequency);
   };

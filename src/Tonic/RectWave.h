@@ -33,7 +33,7 @@ namespace Tonic {
         
         double phaseAccum_;
       
-        void computeSynthesisBlock( const SynthesisContext_ &context );
+        void computeSynthesisBlock( const SynthesisContext context );
       
       public:
       
@@ -51,7 +51,7 @@ namespace Tonic {
         
     };
       
-    inline void RectWave_::computeSynthesisBlock(const SynthesisContext_ &context){
+    inline void RectWave_::computeSynthesisBlock(const SynthesisContext context){
       
       // tick freq and pwm
       freqGen_.tick(freqFrames_, context);

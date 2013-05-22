@@ -13,7 +13,7 @@ namespace Tonic { namespace Tonic_{
   ControlDivider_::ControlDivider_(){}
   ControlDivider_::~ControlDivider_(){}
   
-  void ControlDivider_::computeOutput(const SynthesisContext_ & context){
+  void ControlDivider_::computeOutput(const SynthesisContext  context){
     ControlGeneratorOutput leftOut = left.tick(context);
     ControlGeneratorOutput rightOut = right.tick(context);
     

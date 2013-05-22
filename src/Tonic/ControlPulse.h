@@ -22,7 +22,7 @@ namespace Tonic {
     class ControlPulse_ : public ControlConditioner_{
       
     protected:
-      void computeOutput(const SynthesisContext_ & context);
+      void computeOutput(const SynthesisContext  context);
     
       typedef enum {
         ControlPulseStateOff = 0,

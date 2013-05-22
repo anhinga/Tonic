@@ -14,7 +14,7 @@
 
 namespace Tonic{ namespace Tonic_{
   
-  Generator_::Generator_() : lastFrameIndex_(0), isStereoOutput_(false){
+  Generator_::Generator_() : isStereoOutput_(false){
     outputFrames_.resize(kSynthesisBlockSize, 1, 0);
   }
   

@@ -18,7 +18,7 @@ using namespace Tonic;
 
 {
   TonicFrames testFrames;
-  Tonic_::SynthesisContext_ testContext;
+  SynthesisContext testContext;
   
   float * stereoOutBuffer;
   float * monoOutBuffer;

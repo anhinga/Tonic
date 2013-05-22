@@ -18,7 +18,7 @@ namespace Tonic_{
 
   class ControlFloor_ : public ControlConditioner_{
    
-    void                    computeOutput(const SynthesisContext_ & context);
+    void                    computeOutput(const SynthesisContext  context);
    
   };
 
